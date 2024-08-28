@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - aquagas-monitor-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - aquagas-monitor
+
+  aquagas-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - aquagas-monitor
+
+volumes:
+  aquagas-monitor-data:
+
+
+networks:
+  aquagas-monitor:
