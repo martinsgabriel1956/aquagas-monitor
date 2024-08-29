@@ -1,10 +1,8 @@
-import fastify from 'fastify';
 import swagger from '@fastify/swagger';
+import { fastify as server } from './lib/fastify.js';
 import { env } from './utils/env.js';
-
-const server = fastify({
-  logger: true
-});
+import { appRoutes } from './routes/index.js';
+import { serverLog } from './utils/server-log.js';
 
 server.register(swagger, {
   openapi: {
@@ -12,13 +10,8 @@ server.register(swagger, {
   }
 })
 
+server.register(appRoutes);
+
 server.listen({
   port: env.API_PORT
-}, (err, address) => {
-  if (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
-
-  server.log.info(`server listening on ${address}`);
-})
+}, serverLog)
