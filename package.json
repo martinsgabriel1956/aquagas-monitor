@@ -20,6 +20,7 @@
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.9.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
     "commitizen": "^4.3.0",
@@ -40,11 +41,15 @@
     }
   },
   "dependencies": {
+    "@fastify/multipart": "^8.3.0",
+    "@fastify/static": "^7.0.4",
     "@fastify/swagger": "^8.15.0",
     "@google/generative-ai": "^0.17.1",
     "@prisma/client": "5.19.0",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
+    "fastify-multer": "^2.0.3",
     "zod": "^3.23.8"
   }
 }
